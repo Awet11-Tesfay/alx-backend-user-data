@@ -68,8 +68,3 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=environ.get('PERSONAL_DATA_DB_NAME'))
 
     return dbc
-
-
-def main():
-    """
-    """
