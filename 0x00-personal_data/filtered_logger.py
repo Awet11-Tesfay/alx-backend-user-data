@@ -3,9 +3,8 @@
 """
 
 from typing import List
-from logging import Formatter
-from logging import Logger
-from logging import LogRecord
+from logging import Formatter, Logger, LogRecord, getLogger
+from logging import INFO
 import logging
 import re
 import mysql.connector
@@ -44,3 +43,13 @@ class RedactingFormatter(Formatter):
         message = filter_datum(self.fields, self.REDACTION,
                                record.getMessage(), self.SEPARATOR)
         return super(RedactingFormatter, self.format(record))
+
+
+def get_logger() -> Logger:
+    """ Returns a logging.logger object
+    """
+    logg = getLogger("user_data")
+    logg.setLevel(INFO)
+    logg.propagate = False
+
+    return logg
