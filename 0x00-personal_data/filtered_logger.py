@@ -52,9 +52,8 @@ def get_logger() -> Logger:
     logg.setLevel(INFO)
     logg.propagate = False
 
-    handler = StreamHandler()
-    habits = RedactingFormatter(list(PII_FIELDS))
-    handler.setFormatter(habits)
-    logg.addHandler(handler)
+    ha = StreamHandler()
+    ha.setFormatter(RedactingFormatter(list(PII_FIELDS)))
+    logg.addHandler(ha)
 
     return logg
