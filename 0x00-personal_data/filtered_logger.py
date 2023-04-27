@@ -45,14 +45,15 @@ class RedactingFormatter(Formatter):
                             self.SEPARATOR)
 
 
-def get_logger() -> logging.Logger:
-    """ Returns a Logger Object """
-    logger = logging.getLogger("user_data")
-    logger.setLevel(logging.INFO)
-    logger.propagate = False
+def get_logger() -> Logger:
+    """ Implement get_logger function that takes no agruments
+    """
+    logg = getLogger("user_data")
+    logg.setLevel(logging.INFO)
+    logg.propagate = False
 
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
-    logger.addHandler(stream_handler)
+    han = StreamHandler()
+    han.setFormatter(RedactingFormatter(list(PII_FIELDS)))
+    logg.addHandler(han)
 
-    return logger
+    return logg
