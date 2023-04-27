@@ -5,6 +5,7 @@
 from typing import List
 from logging import Formatter
 from logging import Logger
+from logging import LogRecord
 import logging
 import re
 import mysql.connector
@@ -37,7 +38,7 @@ class RedactingFormatter(Formatter):
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
-    def format(self, record: logging.LogRecord) -> str:
+    def format(self, record: LogRecord) -> str:
         """ Filter values in incomming log records
         """
         return filter_datum(self.fiels, self.REDACTION,
