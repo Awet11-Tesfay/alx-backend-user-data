@@ -9,5 +9,5 @@ def hash_password(password: str) -> bytes:
     """
     en_pass = password.encode()
     hashed = bcrypt.hashpw(en_pass, bcrypt.gensalt())
-    
+
     return hashed
