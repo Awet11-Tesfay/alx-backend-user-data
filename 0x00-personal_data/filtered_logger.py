@@ -20,7 +20,7 @@ def filter_datum(fields: List[str], redaction: str,
     for y in fields:
         message = re.sub(f'{y}=.*?{separator}',
                          f'{y}={redaction}{separator}', message)
-        return message
+    return message
 
 
 class RedactingFormatter(Formatter):
