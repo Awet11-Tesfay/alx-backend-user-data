@@ -18,8 +18,9 @@ def filter_datum(fields: List[str], redaction: str,
     """ A function called filter_datum that the log message
     """
     for y in fields:
-        message = re.sub(f'{y}=.*?{separator}',
+        loggg = re.sub(f'{y}=.*?{separator}',
                          f'{y}={redaction}{separator}', message)
+        return loggg
 
 
 class RedactingFormatter(Formatter):
