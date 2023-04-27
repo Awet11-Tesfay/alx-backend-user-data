@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Regex ing
+""" PII and personal data
 """
 
 from typing import List
