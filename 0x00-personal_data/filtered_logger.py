@@ -53,7 +53,7 @@ def get_logger() -> Logger:
     logg.propagate = False
 
     handler = StreamHandler()
-    habits = RedactingFormatter(PII_FIELDS)
+    habits = RedactingFormatter(list(PII_FIELDS))
     handler.setFormatter(habits)
     logg.addHandler(handler)
 
