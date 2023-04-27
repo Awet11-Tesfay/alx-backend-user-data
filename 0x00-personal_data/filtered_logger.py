@@ -76,14 +76,14 @@ def main():
     db = get_db()
     cursor = db.cursor()
     cursor.execute("SELECT * FROM users;")
-    field = [i[0] for i in cursor.description ]
+    field = [i[0] for i in cursor.description]
 
     logg = get_logger()
 
     for row in cursor:
         str_row = ''.join(f'{f}={str(r)}; ' for r, f in zip(row, field))
         logg.info(str_row.strip)
-    
+
     cursor.close()
     db.close()
 
