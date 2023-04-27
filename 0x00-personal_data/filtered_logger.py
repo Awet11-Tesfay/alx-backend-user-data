@@ -17,9 +17,9 @@ def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
     """ A function called filter_datum that the log message
     """
-    for y in fields:
-        message = re.sub(f'{y}=.*?{separator}',
-                         f'{y}={redaction}{separator}', message)
+    for u in fields:
+        message = re.sub(f'{u}=.*?{separator}',
+                         f'{u}={redaction}{separator}', message)
     return message
 
 
