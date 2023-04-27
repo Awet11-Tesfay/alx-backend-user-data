@@ -61,7 +61,7 @@ def get_logger() -> logging.Logger:
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """ Function that returns a connector to the database
     """
-    db = mysql.connector.connection.MSQLConnection(
+    db = mysql.connector.connection.MySQLConnection(
         user=environ.get('PERSONAL_DATA_USERNAME', 'root'),
         password=environ.get('PERSONAL_DATA_DB_PASSWORD', ''),
         host=environ.get('PERSONAL_DATA_DB_HOST', 'localhost'),
