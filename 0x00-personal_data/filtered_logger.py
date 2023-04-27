@@ -3,8 +3,7 @@
 """
 
 from typing import List
-from logging import Formatter, Logger, LogRecord, getLogger
-from logging import INFO, StreamHandler
+from logging import Formatter, Logger, LogRecord
 import logging
 import re
 import mysql.connector
@@ -45,14 +44,14 @@ class RedactingFormatter(Formatter):
                             self.SEPARATOR)
 
 
-def get_logger() -> Logger:
+def get_logger() -> logging.Logger:
     """ Implement get_logger function that takes no agruments
     """
-    logg = getLogger("user_data")
+    logg = logging.getLogger("user_data")
     logg.setLevel(logging.INFO)
     logg.propagate = False
 
-    handler = StreamHandler()
+    handler = logging.StreamHandler()
     handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
     logg.addHandler(handler)
 
