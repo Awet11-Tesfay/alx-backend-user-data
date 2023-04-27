@@ -4,7 +4,7 @@
 
 from typing import List
 from logging import Formatter, Logger, LogRecord, getLogger
-from logging import INFO
+from logging import INFO, StreamHandler
 import logging
 import re
 import mysql.connector
@@ -51,5 +51,9 @@ def get_logger() -> Logger:
     logg = getLogger("user_data")
     logg.setLevel(INFO)
     logg.propagate = False
+
+    handler = StreamHandler()
+    handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
+    logg.addHandler(handler)
 
     return logg
