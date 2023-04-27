@@ -18,9 +18,8 @@ def filter_datum(fields: List[str], redaction: str,
     """ A function called filter_datum that the log message
     """
     for y in fields:
-        message = re.sub(f'{y}=.*?{separator}',
-                         f'{y}={redaction}{separator}', message)
-    return message
+       message = re.sub(f'{y}=.*?{separator}',
+                        f'{y}={redaction}{separator}', message)
 
 
 class RedactingFormatter(Formatter):
@@ -40,9 +39,9 @@ class RedactingFormatter(Formatter):
     def format(self, record: LogRecord) -> str:
         """ Filter values in incomming log records
         """
-        mess = filter_datum(self.fields, self.REDACTION,
-                            record.getMessage(), self.SEPARATOR)
-        return super(RedactingFormatter, self).format(record)
+        return filter_datum(self.fields, self.REDACTION,
+                            super(RedactingFormatter, self).format(record),
+                            self.SEPARATOR)
 
 
 def get_logger() -> Logger:
