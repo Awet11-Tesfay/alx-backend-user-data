@@ -27,14 +27,14 @@ def stats() -> str:
 
 
 @app_views.route('/unauthorized')
-def unauthorized_error(error) -> str:
+def unauthorized_error() -> str:
     """ To raise abort 401
     """
     abort(401)
 
 
 @app_views.route('/forbidden')
-def forbidden -> str:
+def forbidden_error() -> str:
     """ To raise 403 error
     """
     abort(403)
