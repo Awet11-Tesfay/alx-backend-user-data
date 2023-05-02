@@ -31,3 +31,10 @@ def unauthorized() -> str:
     """ Add endpoint to raise a 401
     """
     abort(401)
+
+
+@app_views.route('/forbidden')
+def forbidden() -> str:
+  """ Error handler 403 will excuted
+  """
+  abort(403)
