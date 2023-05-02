@@ -12,28 +12,6 @@ import os
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-auth = None
-AUTH_TYPE = getenv("AUTH_TYPE")
-
-if AUTH_TYPE == "auth":
-    from api.v1.auth.auth import Auth
-    auth = Auth()
-elif AUTH_TYPE == "basic_auth":
-    from api.v1.auth.basic_auth import BasicAuth
-    auth = BasicAuth()
-
-@app.errorhandler(401)
-def unauthorized_error(error) -> str:
-    """ The response must be Unauthorized
-    """
-    return jsonify({"error": "Unauthorized"}), 401
-
-
-@app.errorhandler(403)
-def forbidden_error(error) -> str:
-    """ The response must be Forbidden
-    """
-    return jsonify({"error": "Forbidden"}), 403
 
 
 @app.errorhandler(404)
