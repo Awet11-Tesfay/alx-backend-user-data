@@ -31,3 +31,10 @@ def unauthorized_error(error) -> str:
     """ To raise abort 401
     """
     abort(401)
+
+
+@app_views.route('/forbidden')
+def forbidden -> str:
+    """ To raise 403 error
+    """
+    abort(403)
