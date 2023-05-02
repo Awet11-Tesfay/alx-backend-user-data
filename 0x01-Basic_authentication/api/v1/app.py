@@ -36,4 +36,4 @@ def not_found(error) -> str:
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(deb
