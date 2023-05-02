@@ -23,9 +23,31 @@ elif AUTH_TYPE == "basic_auth":
     auth = BasicAuth()
 
 
+@app.errorhandler(401)
+def unauthorized(error) -> str:
+    """ To raise an unauthorized error
+    """
+    return jsonify({"error": "Unauthorized"}), 401
+
+
+@app.errorhandler(403)
+def forbidden(error) -> str:
+    """ To raise the Forbidden error
+    """
+    return jsonify({"error": "Forbidden"}), 403
+
+
+@app.errorhandler(404)
+def not_found(error) -> str:
+    """ Not found handler
+    """
+    return jsonify({"error": "Not found"}), 404
+
+
 @app.before_request
-def get_request() -> str:
-    """ Get filtered request
+def filter_request() -> str:
+    """ Before Request Handler
+    Requests Validation
     """
     if auth is None:
         return
@@ -42,27 +64,6 @@ def get_request() -> str:
 
     if auth.current_user(request) is None:
         abort(403)
-
-
-@app.errorhandler(401)
-def unauthorized(error) -> str:
-    """ To raise the error 401
-    """
-    return jsonify({"error": "Unauthorized"}), 401
-
-
-@app.errorhandler(403)
-def forbidden_err(error) -> str:
-    """ To raise the 403 error
-    """
-    return jsonify({"error": "Forbidden"}), 403
-
-
-@app.errorhandler(404)
-def not_found(error) -> str:
-    """ Not found handler
-    """
-    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
