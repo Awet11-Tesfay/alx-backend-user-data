@@ -28,13 +28,13 @@ def stats() -> str:
 
 @app_views.route('/unauthorized')
 def unauthorized() -> str:
-    """ Add endpoint to raise a 401
+    """ Endpoint must be raises a 401
     """
     abort(401)
 
 
 @app_views.route('/forbidden')
 def forbidden() -> str:
-  """ Error handler 403 will excuted
-  """
-  abort(403)
+    """ Endpoint must be raise a 403
+    """
+    abort(403)
