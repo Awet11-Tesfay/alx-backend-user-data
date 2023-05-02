@@ -28,6 +28,6 @@ def stats() -> str:
 
 @app_views.route('/unauthorized')
 def unauthorized() -> str:
-    """ To add endpoint raise a 401
+    """ Add endpoint to raise a 401
     """
     abort(401)
