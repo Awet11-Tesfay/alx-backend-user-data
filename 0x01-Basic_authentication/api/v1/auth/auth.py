@@ -19,10 +19,12 @@ class Auth:
             return False
         else:
             for x in excluded_paths:
-                if x.startwith(path):
+                if x.startswith(path):
+                    return False
+                if path.startswith(i):
                     return False
                 if x[-1] == "*":
-                    if path.startwith(x[:-1]):
+                    if path.startswith(x[:-1]):
                         return False
         return True
 
