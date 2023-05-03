@@ -17,6 +17,14 @@ class Auth:
             return True
         elif path in excluded_paths:
             return False
+        else:
+            for x in excluded_paths:
+                if x.startwith(path):
+                    return False
+                if x[-1] == "*":
+                    if path.startwith(x[:-1]):
+                        return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """ Returns None request will be the flask
