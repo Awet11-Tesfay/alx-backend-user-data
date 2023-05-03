@@ -16,9 +16,9 @@ class BasicAuth(Auth):
         """
         if authorization_header is None:
             return None
-        if authorization_header is not str:
+        if not isinstance(authorization_header, str):
             return None
-        if authorization_header.startwith("Basic"):
-            return True
+        if not authorization_header.startwith("Basic"):
+            return None
 
         encoded = authorization_header.split('', 1)[1]
