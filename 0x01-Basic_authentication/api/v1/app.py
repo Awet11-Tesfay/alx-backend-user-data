@@ -22,6 +22,7 @@ elif AUTH_TYPE == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 
+
 @app.errorhandler(401)
 def unauthorized_error(error) -> str:
     """ Handler of unauthorized error
