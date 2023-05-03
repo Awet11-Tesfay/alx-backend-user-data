@@ -16,7 +16,7 @@ class Auth:
         elif excluded_paths is None or excluded_paths == []:
             return True
         elif path in excluded_paths:
-            return False   
+            return False
 
     def authorization_header(self, request=None) -> str:
         """ Returns None request will be the flask
