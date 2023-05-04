@@ -85,22 +85,22 @@ class BasicAuth(Auth):
 
         if not auth:
             return None
-        
+
         encoded = self.extract_base64_authorization_header(auth)
 
         if not encoded:
             return None
-        
+
         decoded = self.extract_base64_authorization_header(encoded)
 
         if not decoded:
             return None
-        
+
         email, password = self.extract_user_credentials(decoded)
 
         if not email or not password:
             return None
-        
+
         users = self.user_object_from_credentials(email, password)
 
         return users
