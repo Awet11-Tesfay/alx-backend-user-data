@@ -101,6 +101,6 @@ class BasicAuth(Auth):
         if not email or not password:
             return None
 
-        users = self.user_object_from_credentials(email, pwd)
+        users = self.user_object_from_credentials(email, password)
 
         return users
