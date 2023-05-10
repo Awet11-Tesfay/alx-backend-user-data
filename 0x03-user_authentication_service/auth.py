@@ -3,9 +3,32 @@
 """
 from bcrypt import hashpw, gensalt
 import bcrypt
+from db import DB
+from user import User
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 
 
 def _hash_password(password: str) -> bytes:
     """ Takes password arguments and return bytes
     """
     return bcrypt.hashpw(password.encode('Utf-8'), gensalt())
+
+
+class Auth:
+    """ To implement Auth.register_user
+    """
+    def __init__(self):
+        self._db = DB()
+
+    def register_user(self, email: str, password: str) -> User:
+        """ Takes email and password and return the User
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            if user:
+                raise ValueError(f"User {email} already exists")
+        except NoResultFound:
+            hashed_pwd = _hash_password(password)
+            new_user = self._db.add_user(email, hashed_pwd)
+        return new_user
