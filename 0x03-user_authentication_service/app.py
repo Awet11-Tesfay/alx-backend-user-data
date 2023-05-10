@@ -3,6 +3,7 @@
 """
 from flask import Flask, jsonify, request
 from auth import Auth
+from typing import Tuple, Union
 
 app = Flask(__name__)
 AUTH = Auth()
@@ -15,17 +16,18 @@ def index() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route("/users", methods="POST")
-def users() -> str:
+@app.route('/users', methods='POST')
+def users() -> Tuple[str, int]:
     """ Implement the end-point to register
     """
     email = request.form.get('email')
     password = request.form.get('password')
     try:
         AUTH.register_user(email, password)
-        return jsonify({"email": f"{email}", "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"})
+
+    return jsonify({"email": f"{email}", "message": "user created"})
 
 
 if __name__ == "__main__":
