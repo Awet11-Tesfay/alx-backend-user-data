@@ -61,7 +61,7 @@ class DB:
 
         return user
 
-    def update_user(self, user_id: int, **abc) -> User:
+    def update_user(self, user_id: int, **abc) -> None:
         """ Implement update_user method and return None
         """
         user = self.find_user_by(id=user_id)
