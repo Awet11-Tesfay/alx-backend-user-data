@@ -42,3 +42,21 @@ class DB:
         self._session.add(user)
         self._session.commit()
         return user
+
+    def find_user_by(self, **abc) -> User:
+        """ Takes abc arbitrary keyword and returns the first row users
+        """
+        columnnames = User.__table__.columns.keys()
+        for key in abc.keys():
+            if key not in columnnames:
+                raise InvalidRequestError
+
+        user = self._session.query(User).filter_by(**abc).first()
+
+        if user is None:
+            raise NoResultFound
+
+        if not abc:
+            raise InvalidRequestError
+
+        return user
