@@ -15,14 +15,14 @@ def index() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route("/users", method="POST")
-def users(self, email: str, passowrd: str) -> str:
+@app.route("/users", methods="POST")
+def users() -> str:
     """ Implement the end-point to register
     """
     email = request.form.get('email')
     password = request.form.get(password)
     try:
-        user = AUTH.register_user(email, password)
+        AUTH.register_user(email, password)
         opt = jsonify({"email": email, "message": "user created"})
         return opt
 
