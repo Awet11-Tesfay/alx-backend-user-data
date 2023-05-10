@@ -71,7 +71,7 @@ class DB:
             if key not in columnnames:
                 raise ValueError
 
-        for value, key in abc.items():
+        for key, value in abc.items():
             setattr(user, key, value)
 
         self._session.commit()
