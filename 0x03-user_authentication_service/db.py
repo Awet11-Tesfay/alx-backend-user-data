@@ -60,3 +60,18 @@ class DB:
             raise InvalidRequestError
 
         return user
+
+    def update_user(self, user_id: int, **abc) -> User:
+        """ Implement update_user method and return None
+        """
+        user = self.find_user_by(id=user_id)
+
+        columnnames = User.__table__.columns.keys()
+        for key in abc.keys():
+            if key not in columnnames:
+                raise ValueError
+
+        for value, key in abc.items():
+            setattr(user, key, value)
+
+        self._session.commit()
