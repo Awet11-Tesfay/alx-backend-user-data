@@ -23,12 +23,10 @@ def users() -> str:
     password = request.form.get(password)
     try:
         AUTH.register_user(email, password)
-        opt = jsonify({"email": email, "message": "user created"})
-        return opt
+        return jsonify({"email": email, "message": "user created"})
 
     except ValueError:
-        inp = jsonify({"message": "email already registered"})
-        return inp
+        return jsonify({"message": "email already registered"})
 
 
 if __name__ == "__main__":
