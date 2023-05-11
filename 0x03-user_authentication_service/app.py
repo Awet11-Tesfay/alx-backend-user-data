@@ -65,9 +65,9 @@ def logout():
 def profile() -> str:
     """ Implement profile using get/profile route
     """
-    session_id = request.cookies.get(session_id)
+    session_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(session_id)
-    if user is None or session_id is None:
+    if session_id is None or user is None:
         abort(403)
     else:
         return jsonify({'email': user.email})
