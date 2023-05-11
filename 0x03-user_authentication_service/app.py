@@ -17,17 +17,16 @@ def index() -> str:
 
 
 @app.route('/users', methods='POST')
-def users() -> Tuple[str, int]:
+def users() -> str:
     """ Implement the end-point to register
     """
     email = request.form.get('email')
     password = request.form.get('password')
     try:
         AUTH.register_user(email, password)
+        return jsonify({"email": f"{email}", "message": "user created"})
     except ValueError:
-        return jsonify({"message": "email already registered"}), 400
-
-    return jsonify({"email": email, "message": "user created"})
+        return jsonify({"message": "email already registered"})
 
 
 if __name__ == "__main__":
