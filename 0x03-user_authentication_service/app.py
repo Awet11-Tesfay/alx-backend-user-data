@@ -32,7 +32,7 @@ def users() -> Tuple[str, int]:
     return jsonify(opt)
 
 
-@app.route('/sessions', methods='POST')
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
     """ Implement login respond post/sessions
     """
@@ -40,9 +40,9 @@ def login() -> str:
     password = request.form.get('password')
     if AUTH.valid_login(email, password):
         session_id = AUTH.create_session(email)
-        res = jsonify({"email": f'{email}', "message": "logged in"})
-        res.set_cookie("session_id", session_id)
-        return res
+        respo = jsonify({"email": f'{email}', "message": "logged in"})
+        respo.set_cookie("session_id", session_id)
+        return respo
     abort(401)
 
 
