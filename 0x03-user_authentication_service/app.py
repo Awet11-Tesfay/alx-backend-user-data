@@ -62,7 +62,7 @@ def logout():
 
 
 @app.route('/profile', methods=['GET'])
-def profile():
+def profile() -> str:
     """ Implement profile using get/profile route
     """
     session_id = request.cookies.get(session_id)
