@@ -32,5 +32,21 @@ def users() -> Tuple[str, int]:
     return jsonify(opt)
 
 
+@app.route('/sessions', methods='POST')
+def login() -> str:
+    """ Implement login respond post/sessions
+    """
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    session_id = Auth.create_session(email)
+    respo = jsonify({'email': email, 'message': 'logged in'})
+    respo.set_cookie('session_id', session_id)
+    return respo
+
+    if not AUTH.valid_login(email, password):
+        abort(401)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port='5000')
