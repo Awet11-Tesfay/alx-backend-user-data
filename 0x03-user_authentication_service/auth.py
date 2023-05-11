@@ -16,10 +16,11 @@ def _hash_password(password: str) -> bytes:
     """
     return bcrypt.hashpw(password.encode('Utf-8'), gensalt())
 
+
 def _generate_uuid() -> str:
-        """ Implementing generate uuid and use uuid module
-        """
-        return str(uuid.uuid4())
+    """ Implementing generate uuid and use uuid module
+    """
+    return str(uuid.uuid4())
 
 
 class Auth:
@@ -55,4 +56,3 @@ class Auth:
             return True
         else:
             return False
-
