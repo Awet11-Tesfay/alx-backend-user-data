@@ -38,7 +38,8 @@ def login() -> str:
     """
     email = request.form.get('email')
     password = request.form.get('password')
-    if AUTH.valid_login(email, password):
+    valid_login = AUTH.valid_login(email, password)
+    if valid_login:
         session_id = AUTH.create_session(email)
         respo = jsonify({"email": f'{email}', "message": "logged in"})
         respo.set_cookie("session_id", session_id)
