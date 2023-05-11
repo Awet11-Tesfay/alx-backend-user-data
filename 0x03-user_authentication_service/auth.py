@@ -8,12 +8,18 @@ from user import User
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
 from bcrypt import checkpw
+import uuid
 
 
 def _hash_password(password: str) -> bytes:
     """ Takes password arguments and return bytes
     """
     return bcrypt.hashpw(password.encode('Utf-8'), gensalt())
+
+def _generate_uuid() -> str:
+        """ Implementing generate uuid and use uuid module
+        """
+        return str(uuid.uuid4())
 
 
 class Auth:
@@ -49,3 +55,4 @@ class Auth:
             return True
         else:
             return False
+
